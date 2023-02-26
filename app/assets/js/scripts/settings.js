@@ -184,7 +184,7 @@ function saveSettingsValues() {
                     }
                 } else if (v.type === 'checkbox') {
                     sFn(v.checked)
-                        // Special Conditions
+                    // Special Conditions
                     if (cVal === 'AllowPrerelease') {
                         changeAllowPrerelease(v.checked)
                     }

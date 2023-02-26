@@ -203,7 +203,9 @@ ipcRenderer.on('manual-data', (event, artifact, manualWindowIndex) => {
         }
 
         // 意地でもヒントを表示させる
+        // eslint-disable-next-line no-undef
         if (document.readyState === 'loading') {  // Loading hasn't finished yet
+            // eslint-disable-next-line no-undef
             document.addEventListener('DOMContentLoaded', showHints)
         } else {  // `DOMContentLoaded` has already fired
             showHints()
@@ -232,6 +234,7 @@ ipcRenderer.on('manual-data', (event, artifact, manualWindowIndex) => {
         .text('戻る')
         .appendTo(jQuery('body'))
         .on('click', () => {
+            // eslint-disable-next-line no-undef
             history.back()
         })
 

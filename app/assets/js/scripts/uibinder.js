@@ -323,6 +323,7 @@ async function validateSelectedAccount(){
         let val
         try {
             val = await AuthManager.validateSelected()
+        // eslint-disable-next-line no-empty
         } catch(error) {
         }
         if(!val){

@@ -1,5 +1,7 @@
-const root = require('app-root-path');
+// eslint-disable-next-line no-unused-vars
+const root = require('app-root-path')
 const path = require('path')
+// eslint-disable-next-line no-unused-vars
 const isDev = require('./isdev')
 const os = require('os')
 
@@ -25,6 +27,7 @@ class Util {
     }
 
     static getJDKVersion() {
+        // eslint-disable-next-line no-undef
         const mcVersion = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer()).getMinecraftVersion()
 
         if (!Util.mcVersionAtLeast('1.16', mcVersion)) {
@@ -67,7 +70,8 @@ class Util {
 
     static getJDKPath() {
         const jdkMajorVersion = Util.getJDKVersion()
-        const basePath = path.join(ConfigManager.getDataDirectory(), "runtime")
+        // eslint-disable-next-line no-undef
+        const basePath = path.join(ConfigManager.getDataDirectory(), 'runtime')
 
         let sanitizedOS
         switch (process.platform) {
@@ -85,6 +89,7 @@ class Util {
                 sanitizedOS = 'linux'
                 break
             default:
+                // eslint-disable-next-line no-undef
                 return ConfigManager.getJavaExecutable()
         }
 
@@ -152,6 +157,7 @@ class Util {
     }
 
     static varidatePlatform() {
+        // eslint-disable-next-line no-undef
         const MC_VERSION = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer()).getMinecraftVersion()
         const IS_APPLE_SILICON = Util.isAappleSilicon()
 
@@ -193,9 +199,9 @@ class Util {
      * */
     static kanaToHira(str) {
         return str.replace(/[\u30a1-\u30f6]/g, function(match) {
-            let chr = match.charCodeAt(0) - 0x60;
-            return String.fromCharCode(chr);
-        });
+            let chr = match.charCodeAt(0) - 0x60
+            return String.fromCharCode(chr)
+        })
     }
 }
 

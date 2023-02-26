@@ -26,7 +26,7 @@ const server_selection_button_status = document.getElementById('server_selection
 const user_text = document.getElementById('user_text')
 
 const loggerLanding = LoggerUtil('%c[Landing]', 'color: #000668; font-weight: bold')
-    /* Launch Progress Wrapper Functions */
+/* Launch Progress Wrapper Functions */
 
 /**
  * Show/hide the loading area.
@@ -90,6 +90,7 @@ function setLaunchEnabled(val) {
 document.getElementById('launch_button').addEventListener('click', function(e) {
     loggerLanding.log('Launching game..')
 
+    // eslint-disable-next-line no-irregular-whitespace
     // OS,　プロセッサ, MCverionから起動できるか判定
     let validationResult = Util.varidatePlatform()
     if (validationResult) {
@@ -265,7 +266,7 @@ const refreshServerStatus = async function(fade = false) {
 }
 
 refreshMojangStatuses()
-    // Server Status is refreshed in uibinder.js on distributionIndexDone.
+// Server Status is refreshed in uibinder.js on distributionIndexDone.
 
 // Set refresh rate to once every 5 minutes.
 let mojangStatusListener = setInterval(() => refreshMojangStatuses(true), 300000)
@@ -313,18 +314,18 @@ function asyncSystemScan(mcVersion, launchAfter = true) {
 
     // Fork a process to run validations.
     sysAEx = cp.fork(path.join(__dirname, 'assets', 'js', 'assetexec.js'), [
-            'JavaGuard',
-            mcVersion
-        ], {
-            env: forkEnv,
-            stdio: 'pipe'
-        })
-        // Stdout
+        'JavaGuard',
+        mcVersion
+    ], {
+        env: forkEnv,
+        stdio: 'pipe'
+    })
+    // Stdout
     sysAEx.stdio[1].setEncoding('utf8')
     sysAEx.stdio[1].on('data', (data) => {
-            loggerSysAEx.log(data)
-        })
-        // Stderr
+        loggerSysAEx.log(data)
+    })
+    // Stderr
     sysAEx.stdio[2].setEncoding('utf8')
     sysAEx.stdio[2].on('data', (data) => {
         loggerSysAEx.log(data)
@@ -431,24 +432,24 @@ function asyncSystemScan(mcVersion, launchAfter = true) {
 
             switch (m.data) {
                 case 'download':
-                    {
-                        // Show installing progress bar.
-                        remote.getCurrentWindow().setProgressBar(2)
+                {
+                    // Show installing progress bar.
+                    remote.getCurrentWindow().setProgressBar(2)
 
-                        // Wait for extration to complete.
-                        const eLStr = '展開中'
-                        let dotStr = ''
-                        setLaunchDetails(eLStr)
-                        extractListener = setInterval(() => {
-                            if (dotStr.length >= 3) {
-                                dotStr = ''
-                            } else {
-                                dotStr += '.'
-                            }
-                            setLaunchDetails(eLStr + dotStr)
-                        }, 750)
-                        break
-                    }
+                    // Wait for extration to complete.
+                    const eLStr = '展開中'
+                    let dotStr = ''
+                    setLaunchDetails(eLStr)
+                    extractListener = setInterval(() => {
+                        if (dotStr.length >= 3) {
+                            dotStr = ''
+                        } else {
+                            dotStr += '.'
+                        }
+                        setLaunchDetails(eLStr + dotStr)
+                    }, 750)
+                    break
+                }
                 case 'java':
                     // Download & extraction complete, remove the loading from the OS progress bar.
                     remote.getCurrentWindow().setProgressBar(-1)
@@ -490,10 +491,10 @@ function asyncSystemScan(mcVersion, launchAfter = true) {
 
 // Keep reference to Minecraft Process
 let proc
-    // Is DiscordRPC enabled
+// Is DiscordRPC enabled
 let hasRPC = false
-    // Joined server regex
-    // Change this if your server uses something different.
+// Joined server regex
+// Change this if your server uses something different.
 const GAME_JOINED_REGEX = /\[.+\]: Sound engine started/
 const GAME_LAUNCH_REGEX = /^\[.+\]: (?:MinecraftForge .+ Initialized|ModLauncher .+ starting: .+)$/
 const MIN_LINGER = 5000
@@ -536,21 +537,21 @@ async function dlAsync(login = true) {
 
     // Start AssetExec to run validations and downloads in a forked process.
     aEx = cp.fork(path.join(__dirname, 'assets', 'js', 'assetexec.js'), [
-            'AssetGuard',
-            ConfigManager.getCommonDirectory(),
-            JavaGuard.javaExecFromRoot(Util.getJDKPath()),
-            Util.getJDKPath(),
-            Util.getJDKVersion(),
-        ], {
-            env: forkEnv,
-            stdio: 'pipe'
-        })
-        // Stdout
+        'AssetGuard',
+        ConfigManager.getCommonDirectory(),
+        JavaGuard.javaExecFromRoot(Util.getJDKPath()),
+        Util.getJDKPath(),
+        Util.getJDKVersion(),
+    ], {
+        env: forkEnv,
+        stdio: 'pipe'
+    })
+    // Stdout
     aEx.stdio[1].setEncoding('utf8')
     aEx.stdio[1].on('data', (data) => {
-            loggerAEx.log(data)
-        })
-        // Stderr
+        loggerAEx.log(data)
+    })
+    // Stderr
     aEx.stdio[2].setEncoding('utf8')
     aEx.stdio[2].on('data', (data) => {
         loggerAEx.log(data)
@@ -605,33 +606,33 @@ async function dlAsync(login = true) {
         } else if (m.context === 'progress') {
             switch (m.data) {
                 case 'assets':
-                    {
-                        const perc = (m.value / m.total) * 20
-                        setLaunchPercentage(40 + perc, 100, parseInt(40 + perc))
-                        break
-                    }
+                {
+                    const perc = (m.value / m.total) * 20
+                    setLaunchPercentage(40 + perc, 100, parseInt(40 + perc))
+                    break
+                }
                 case 'download':
                     setDownloadPercentage(m.value, m.total, m.percent)
                     break
                 case 'extract':
-                    {
-                        // Show installing progress bar.
-                        remote.getCurrentWindow().setProgressBar(2)
+                {
+                    // Show installing progress bar.
+                    remote.getCurrentWindow().setProgressBar(2)
 
-                        // Download done, extracting.
-                        const eLStr = 'ライブラリを展開中'
-                        let dotStr = ''
-                        setLaunchDetails(eLStr)
-                        progressListener = setInterval(() => {
-                            if (dotStr.length >= 3) {
-                                dotStr = ''
-                            } else {
-                                dotStr += '.'
-                            }
-                            setLaunchDetails(eLStr + dotStr)
-                        }, 750)
-                        break
-                    }
+                    // Download done, extracting.
+                    const eLStr = 'ライブラリを展開中'
+                    let dotStr = ''
+                    setLaunchDetails(eLStr)
+                    progressListener = setInterval(() => {
+                        if (dotStr.length >= 3) {
+                            dotStr = ''
+                        } else {
+                            dotStr += '.'
+                        }
+                        setLaunchDetails(eLStr + dotStr)
+                    }, 750)
+                    break
+                }
             }
         } else if (m.context === 'complete') {
             switch (m.data) {
@@ -760,7 +761,7 @@ async function dlAsync(login = true) {
                     const fs = require('fs')
                     const filenames = fs.readdirSync(ConfigManager.getInstanceDirectory())
                     const path = require('path')
-                        //共通化のオプションがオンの時かつコピー先オプションファイルが存在しないときコピーを実行する
+                    //共通化のオプションがオンの時かつコピー先オプションファイルが存在しないときコピーを実行する
                     if (ConfigManager.getoptionStandardize() && !fs.existsSync(path.join(pb.gameDir, 'options.txt'))) {
                         //最新のoptions.txtを取得する
                         let maxMtime = null
@@ -883,8 +884,8 @@ function slide_(up) {
         lCLRight.style.top = '-200vh'
         newsBtn.style.top = '130vh'
         newsContainer.style.top = '0px'
-            //date.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric'})
-            //landingContainer.style.background = 'rgba(29, 29, 29, 0.55)'
+        //date.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric'})
+        //landingContainer.style.background = 'rgba(29, 29, 29, 0.55)'
         landingContainer.style.background = 'rgba(0, 0, 0, 0.50)'
         setTimeout(() => {
             if (newsGlideCount === 1) {

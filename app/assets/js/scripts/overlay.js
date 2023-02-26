@@ -75,7 +75,7 @@ function toggleOverlay(toggleState, dismissable = false, content = 'overlayConte
     bindOverlayKeys(toggleState, content, dismissable)
     if (toggleState) {
         document.getElementById('main').setAttribute('overlay', true)
-            // Make things untabbable.
+        // Make things untabbable.
         $('#main *').attr('tabindex', '-1')
         $('#' + content).parent().children().hide()
         $('#' + content).show()
@@ -94,7 +94,7 @@ function toggleOverlay(toggleState, dismissable = false, content = 'overlayConte
         })
     } else {
         document.getElementById('main').removeAttribute('overlay')
-            // Make things tabbable.
+        // Make things tabbable.
         $('#main *').removeAttr('tabindex')
         $('#overlayContainer').fadeOut({
             duration: 250,
@@ -293,11 +293,11 @@ function createServerHtml(servers) {
     let htmlString = ''
 
     if (sortedServers.length < 1) {
-        htmlString += `<div style="width:375px;text-align:center">該当パックなし</div>`
+        htmlString += '<div style="width:375px;text-align:center">該当パックなし</div>'
     } else {
         for (const serv of sortedServers) {
             let serverName = Util.removeOrderNumber(serv.getName())
-                //let serverName = serv.getName()
+            //let serverName = serv.getName()
             htmlString += `<button class="serverListing" servid="${serv.getID()}" ${serv.getID() === ConfigManager.getSelectedServer() ? 'selected' : ''}>
                 ${genelateIcon(serv.getIcon(), serverName)}
                 <div class="serverListingDetails">

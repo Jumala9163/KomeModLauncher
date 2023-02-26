@@ -30,15 +30,15 @@ function loginCancelEnabled(val) {
 }
 
 loginCancelButton.onclick = (e) => {
-        switchView(getCurrentView(), loginViewOnCancel, 500, 500, () => {
-            loginCancelEnabled(false)
-            if (loginViewCancelHandler != null) {
-                loginViewCancelHandler()
-                loginViewCancelHandler = null
-            }
-        })
-    }
-    // Disable default form behavior.
+    switchView(getCurrentView(), loginViewOnCancel, 500, 500, () => {
+        loginCancelEnabled(false)
+        if (loginViewCancelHandler != null) {
+            loginViewCancelHandler()
+            loginViewCancelHandler = null
+        }
+    })
+}
+// Disable default form behavior.
 loginForm.onsubmit = () => { return false }
 
 loginMSButton.addEventListener('click', (event) => {
@@ -55,25 +55,25 @@ ipcRenderer.on('MSALoginWindowReply', (event, ...args) => {
         loginMSButton.disabled = false
         switch (args[1]) {
             case 'AlreadyOpenException':
-                {
-                    setOverlayContent('ERROR', 'すでにログインウィンドウが開いています！', 'OK')
-                    setOverlayHandler(() => {
-                        toggleOverlay(false)
-                        toggleOverlay(false, false, 'msOverlay')
-                    })
-                    toggleOverlay(true)
-                    return
-                }
+            {
+                setOverlayContent('ERROR', 'すでにログインウィンドウが開いています！', 'OK')
+                setOverlayHandler(() => {
+                    toggleOverlay(false)
+                    toggleOverlay(false, false, 'msOverlay')
+                })
+                toggleOverlay(true)
+                return
+            }
             case 'AuthNotFinished':
-                {
-                    setOverlayContent('ERROR', 'KomeModLauncherを使用するには、ログインが必要です。ログインに成功すると、ウィンドウは自動的に閉じます。', 'OK')
-                    setOverlayHandler(() => {
-                        toggleOverlay(false)
-                        toggleOverlay(false, false, 'msOverlay')
-                    })
-                    toggleOverlay(true)
-                    return
-                }
+            {
+                setOverlayContent('ERROR', 'KomeModLauncherを使用するには、ログインが必要です。ログインに成功すると、ウィンドウは自動的に閉じます。', 'OK')
+                setOverlayHandler(() => {
+                    toggleOverlay(false)
+                    toggleOverlay(false, false, 'msOverlay')
+                })
+                toggleOverlay(true)
+                return
+            }
         }
 
     }

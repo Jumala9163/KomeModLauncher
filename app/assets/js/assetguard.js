@@ -476,7 +476,7 @@ class JavaGuard extends EventEmitter {
                 console.log(props[i].trim())
                 if (arch === 64) {
                     meta.arch = arch
-                        ++checksum
+                    ++checksum
                     if (checksum === goal) {
                         break
                     }
@@ -489,7 +489,7 @@ class JavaGuard extends EventEmitter {
                     // Java 8
                     if (verOb.major === 8 && verOb.update > 52) {
                         meta.version = verOb
-                            ++checksum
+                        ++checksum
                         if (checksum === goal) {
                             break
                         }
@@ -498,7 +498,7 @@ class JavaGuard extends EventEmitter {
                     // TODO Make this logic better. Make java 16 required.
                     if (Util.mcVersionAtLeast('1.16', this.mcVersion)) {
                         meta.version = verOb
-                            ++checksum
+                        ++checksum
                         if (checksum === goal) {
                             break
                         }
@@ -630,7 +630,7 @@ class JavaGuard extends EventEmitter {
                                     for (let j = 0; j < javaVers.length; j++) {
                                         const javaVer = javaVers[j]
                                         const vKey = javaVer.key.substring(javaVer.key.lastIndexOf('\\') + 1)
-                                            // Only Java 8 is supported currently.
+                                        // Only Java 8 is supported currently.
                                         if (parseFloat(vKey) === 1.8) {
                                             javaVer.get('JavaHome', (err, res) => {
                                                 const jHome = res.value
@@ -1256,7 +1256,7 @@ class AssetGuard extends EventEmitter {
             const versionFile = path.join(versionPath, version + '.json')
             if (!fs.existsSync(versionFile) || force) {
                 const url = await self._getVersionDataUrl(version)
-                    //This download will never be tracked as it's essential and trivial.
+                //This download will never be tracked as it's essential and trivial.
                 console.log('Preparing download of ' + version + ' assets.')
                 fs.ensureDirSync(versionPath)
                 const stream = request(url).pipe(fs.createWriteStream(versionFile))
@@ -1377,7 +1377,7 @@ class AssetGuard extends EventEmitter {
             let dlSize = 0
             let acc = 0
             const total = Object.keys(indexData.objects).length
-                //const objKeys = Object.keys(data.objects)
+            //const objKeys = Object.keys(data.objects)
             async.forEachOfLimit(indexData.objects, 10, (value, key, cb) => {
                 acc++
                 self.emit('progress', 'assets', acc, total)
@@ -1573,24 +1573,24 @@ class AssetGuard extends EventEmitter {
 
             // 手動ダウンロードMod候補
             let manualModsCandidate = []
-                // ON以外の手動Modは除外する
+            // ON以外の手動Modは除外する
             let removeCandidate = []
             mdls.forEach((mdl, index, object) => {
-                    const artifact = mdl.getArtifact()
-                    const manual = artifact.getManual()
-                        // 手動Modかどうか
-                    if (manual !== undefined) {
-                        // ONかどうか
-                        const o = !mdl.getRequired().isRequired()
-                        const e = isModEnabled(modCfg[mdl.getVersionlessID()], mdl.getRequired())
-                        if (!o || (o && e)) {
-                            manualModsCandidate.push(mdl)
-                        } else {
-                            removeCandidate.push(index)
-                        }
+                const artifact = mdl.getArtifact()
+                const manual = artifact.getManual()
+                // 手動Modかどうか
+                if (manual !== undefined) {
+                    // ONかどうか
+                    const o = !mdl.getRequired().isRequired()
+                    const e = isModEnabled(modCfg[mdl.getVersionlessID()], mdl.getRequired())
+                    if (!o || (o && e)) {
+                        manualModsCandidate.push(mdl)
+                    } else {
+                        removeCandidate.push(index)
                     }
-                })
-                // 除外された手動Modはリストから削除
+                }
+            })
+            // 除外された手動Modはリストから削除
             for (let i = removeCandidate.length - 1; i >= 0; i--)
                 mdls.splice(removeCandidate[i], 1)
 
@@ -1861,7 +1861,7 @@ class AssetGuard extends EventEmitter {
                 if (self.progress >= self.totaldlsize) {
                     if (self.extractQueue.length > 0) {
                         self.emit('progress', 'extract', 1, 1)
-                            //self.emit('extracting')
+                        //self.emit('extracting')
                         AssetGuard._extractPackXZ(self.extractQueue, self.javaexec).then(() => {
                             self.extractQueue = []
                             self.emit('complete', 'download')
@@ -1951,7 +1951,7 @@ class AssetGuard extends EventEmitter {
             await this.validateMiscellaneous(versionData)
             this.emit('validate', 'files')
             await this.processDlQueues()
-                //this.emit('complete', 'download')
+            //this.emit('complete', 'download')
             const forgeData = await this.loadForgeData(server)
 
             return {
