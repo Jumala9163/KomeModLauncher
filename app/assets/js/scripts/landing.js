@@ -338,7 +338,7 @@ function asyncSystemScan(mcVersion, launchAfter = true) {
                 // Show this information to the user.
                 setOverlayContent(
                     '対応したJava<br>がインストールされていません',
-                    '参加するためには64ビット版Javaのインストールが必要です。インストールしますか?インストールには<a href="http://www.oracle.com/technetwork/java/javase/terms/license/index.html">Oracleライセンス条項</a>に同意する必要があります。',
+                    '64ビット版Javaのインストールが必要です。インストールしますか?インストールには<a href="http://www.oracle.com/technetwork/java/javase/terms/license/index.html">Oracleライセンス条項</a>に同意する必要があります。',
                     'Javaをインストール',
                     '手動でインストール'
                 )
@@ -736,7 +736,7 @@ async function dlAsync(login = true) {
                 const gameStateChange = function(data) {
                     data = data.trim()
                     if (SERVER_JOINED_REGEX.test(data)) {
-                        DiscordWrapper.updateDetails('50人クラフトに参加中!')
+                        DiscordWrapper.updateDetails('マルチプレイ中！')
                     } else if (GAME_JOINED_REGEX.test(data)) {
                         DiscordWrapper.updateDetails('マインクラフトをプレイ中!')
                     }
@@ -797,7 +797,7 @@ async function dlAsync(login = true) {
                     // 一定時間経ったらLoading表示を解除
                     setTimeout(() => { toggleLaunchArea(false) }, 10000)
 
-                    setLaunchDetails('準備OK。参加勢集合！！！')
+                    setLaunchDetails('準備OK!!')
 
                     // Init Discord Hook
                     const distro = DistroManager.getDistribution()

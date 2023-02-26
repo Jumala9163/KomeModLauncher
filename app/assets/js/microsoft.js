@@ -4,7 +4,7 @@ require('dotenv').config()
 const request = require('request')
 
 // Constants
-const clientId = 'ce9c7ade-7cee-4c4c-83bc-0c0edafdcaea'
+const clientId = '8dfad026-b70c-40d6-8644-df82a91ccf60'
 
 const tokenUri = 'https://login.microsoftonline.com/consumers/oauth2/v2.0/token'
 const authXBLUri = 'https://user.auth.xboxlive.com/user/authenticate'
@@ -80,7 +80,7 @@ function getXSTSToken(XBLToken) {
         
                     case 2148916238: 
                         reject({
-                            message: 'Since you are not yet 18 years old, an adult must add you to a family in order for you to use NumaLauncher!'
+                            message: 'Since you are not yet 18 years old, an adult must add you to a family in order for you to use KomeModLauncher!'
                         })
                         return
                 

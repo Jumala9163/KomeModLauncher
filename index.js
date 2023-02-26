@@ -13,7 +13,7 @@ const url = require('url')
 const crypto = require('crypto')
 
 const redirectUriPrefix = 'https://login.microsoftonline.com/common/oauth2/nativeclient?'
-const clientID = 'ce9c7ade-7cee-4c4c-83bc-0c0edafdcaea'
+const clientID = '8dfad026-b70c-40d6-8644-df82a91ccf60'
 
 // Setup auto updater.
 function initAutoUpdater(event, data) {
@@ -96,7 +96,7 @@ ipcMain.on('distributionIndexDone', (event, res) => {
         // ダウンロードID管理
     let downloadIndex = 0
         // ダウンロードフォルダ
-    const downloadDirectory = path.join(app.getPath('temp'), 'NumaLauncher', 'ManualDownloads')
+    const downloadDirectory = path.join(app.getPath('temp'), 'KomeModLauncher', 'ManualDownloads')
         // IDでウィンドウを閉じる
     ipcMain.on('closeManualWindow', (ipcEvent, index) => {
             // IDを探してウィンドウを閉じる

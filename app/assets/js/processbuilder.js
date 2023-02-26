@@ -357,7 +357,7 @@ class ProcessBuilder {
 
         // Java Arguments
         if (process.platform === 'darwin') {
-            args.push('-Xdock:name=NumaLauncher')
+            args.push('-Xdock:name=KomeModLauncher')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
         }
         args.push('-Xmx' + ConfigManager.getMaxRAM())
@@ -405,7 +405,7 @@ class ProcessBuilder {
 
         // Java Arguments
         if (process.platform === 'darwin') {
-            args.push('-Xdock:name=NumaLauncher')
+            args.push('-Xdock:name=KomeModLauncher')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
         }
         args.push('-Xmx' + ConfigManager.getMaxRAM())
@@ -507,7 +507,7 @@ class ProcessBuilder {
                             val = args[i].replace(argDiscovery, tempNativePath)
                             break
                         case 'launcher_name':
-                            val = args[i].replace(argDiscovery, 'Numa-Launcher')
+                            val = args[i].replace(argDiscovery, 'KomeModLauncher')
                             break
                         case 'launcher_version':
                             val = args[i].replace(argDiscovery, this.launcherVersion)

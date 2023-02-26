@@ -325,30 +325,30 @@ function initEditSkinPreview() {
 JSONファイルの読み込み・書き出し
 ----------------------*/
 
-// 沼ランチャーのスキンデータパスを取得する
+// KomeModLauncherのスキンデータパスを取得する
 function getLauncherSkinPath() {
     const { remote: remoteElectron } = require('electron')
     const app = remoteElectron.app
     const appPath = app.getPath('appData')
     const homePath = app.getPath('home')
-    let numaPath
+    let komePath
     switch (process.platform) {
         case 'win32':
-            numaPath = `${appPath}\\.minecraft\\numa_skins.json`
+            komePath = `${appPath}\\.minecraft\\kome_skins.json`
             break
         case 'darwin':
-            numaPath = `${appPath}/minecraft/numa_skins.json`
+            komePath = `${appPath}/minecraft/kome_skins.json`
             break
         case 'linux':
-            numaPath = `${homePath}/.minecraft/numa_skins.json`
+            komePath = `${homePath}/.minecraft/kome_skins.json`
             break
         default:
             console.error('Cannot resolve current platform!')
-            numaPath = ''
+            komePath = ''
             break
     }
 
-    return numaPath
+    return komePath
 
 }
 
@@ -378,7 +378,7 @@ function getLauncherSkinPathOrigin() {
     return defaultOriginPath
 }
 
-// 沼ランチャーとの同期設定JSON
+// KomeModLauncherとの同期設定JSON
 function getSkinSettingPath() {
     const { remote: remoteElectron } = require('electron')
     const app = remoteElectron.app
@@ -410,7 +410,7 @@ function getSkinSettingPath() {
 //     return fs.existsSync(defaultOriginPath);
 // }
 
-// 沼ランチャー内のスキンのJSONを呼び出し・オブジェクトに変更
+// KomeModLauncherのスキンのJSONを呼び出し・オブジェクトに変更
 function loadSkins() {
     const skinJSON = path.join(getLauncherSkinPath())
     try {
@@ -540,10 +540,10 @@ function editSkinJSON(
 function addSkinJSON(created, name, skinImage, modelImage, slim, textureId) {
     const jsonObject = loadSkins()
     let newIDNum = 1
-    while (jsonObject['skin_numa_' + newIDNum]) {
+    while (jsonObject['skin_kome_' + newIDNum]) {
         newIDNum++
     }
-    const id = 'skin_numa_' + newIDNum
+    const id = 'skin_kome_' + newIDNum
     jsonObject[id] = {}
     jsonObject[id]['created'] = created
     jsonObject[id]['id'] = id
@@ -595,7 +595,7 @@ function saveSettingSkin(settingJSONObject) {
     fs.writeFileSync(skinSettingPath, json)
 }
 
-// 初回時、公式スキンを沼ランチャーにインポートする
+// 初回時、公式スキンをKomeModLauncherにインポートする
 function importOriginalSkinJSON() {
     const src = path.join(getLauncherSkinPathOrigin())
     const dest = path.join(getLauncherSkinPath())
@@ -615,7 +615,7 @@ function importOriginalSkinJSON() {
     }
 }
 
-// 初回時、自分で設定したパスでを沼ランチャーにインポートする
+// 初回時、自分で設定したパスでをKomeModLauncherにインポートする
 // async function importMySettingOriginalSkinJSON(){
 //     const settingJSONObject = loadSettingSkin();
 //     const src = settingJSONObject['settings']['myOriginSkinPath']
@@ -691,19 +691,19 @@ function checkSyncSkinJSON() {
     return syncSetting
 }
 
-// 公式と沼ランチャーJSONのmerge（同期trueの時のみ動かす）
-async function mergeNumaSkinJSON() {
+// 公式とKomeModLauncherJSONのmerge（同期trueの時のみ動かす）
+async function mergeKomeSkinJSON() {
     const syncSetting = checkSyncSkinJSON()
     if (syncSetting) {
         const originjsonObject = loadOriginSkins()
-        const numajsonObject = loadSkins()
-        let margedJSONObject = Object.assign(originjsonObject, numajsonObject)
+        const komejsonObject = loadSkins()
+        let margedJSONObject = Object.assign(originjsonObject, komejsonObject)
         Object.keys(originjsonObject).forEach((key) => {
-            if (numajsonObject[key]) {
+            if (komejsonObject[key]) {
                 const originalDate = new Date(originjsonObject[key].updated)
-                const numaDate = new Date(numajsonObject[key].updated)
-                if (numaDate > originalDate) {
-                    margedJSONObject[key] = numajsonObject[key]
+                const komeDate = new Date(komejsonObject[key].updated)
+                if (komeDate > originalDate) {
+                    margedJSONObject[key] = komejsonObject[key]
                 }
             }
         })
@@ -730,7 +730,7 @@ exports.addSkinJSON = addSkinJSON
 exports.importOriginalSkinJSON = importOriginalSkinJSON
 exports.saveSkinSetting = saveSkinSetting
 exports.saveImportSkins = saveImportSkins
-exports.mergeNumaSkinJSON = mergeNumaSkinJSON
+exports.mergeKomeSkinJSON = mergeKomeSkinJSON
 // exports.existsDefalutSkinPath = existsDefalutSkinPath;
 // exports.saveMyOriginSkinPath = saveMyOriginSkinPath;
 // exports.importMySettingOriginalSkinJSON = importMySettingOriginalSkinJSON;

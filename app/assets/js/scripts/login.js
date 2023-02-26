@@ -66,7 +66,7 @@ ipcRenderer.on('MSALoginWindowReply', (event, ...args) => {
                 }
             case 'AuthNotFinished':
                 {
-                    setOverlayContent('ERROR', 'NumaLauncherを使用するには、ログインが必要です。ログインに成功すると、ウィンドウは自動的に閉じます。', 'OK')
+                    setOverlayContent('ERROR', 'KomeModLauncherを使用するには、ログインが必要です。ログインに成功すると、ウィンドウは自動的に閉じます。', 'OK')
                     setOverlayHandler(() => {
                         toggleOverlay(false)
                         toggleOverlay(false, false, 'msOverlay')
@@ -116,7 +116,7 @@ ipcRenderer.on('MSALoginWindowReply', (event, ...args) => {
         }, 1000)
     }).catch(error => {
         loginMSButton.disabled = false
-        setOverlayContent('ERROR', error.message ? error.message : 'Microsoftでのログイン中にエラーが発生しました！詳細については、ログを確認してください。 CTRL + SHIFT + Iで開くことができます。', Lang.queryJS('login.tryAgain'))
+        setOverlayContent('ERROR', error.message ? error.message : 'Microsoftでのログイン中にエラーが発生しました!詳細については、ログを確認してください。 CTRL + SHIFT + Iで開くことができます。', Lang.queryJS('login.tryAgain'))
         setOverlayHandler(() => {
             toggleOverlay(false)
         })

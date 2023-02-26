@@ -13,7 +13,7 @@ $(window).on('load', async function () {
     if (!skinFunc.checkImportedSkinJSON()) {
         $('#settingSkinData').css('display', 'block')
     } else {
-        await skinFunc.mergeNumaSkinJSON()
+        await skinFunc.mergeKomeSkinJSON()
         $('#settingSkinData').css('display', 'none')
         await skinFunc.exportLibrary()
     }
@@ -60,7 +60,7 @@ $('.addSaveAndUse').on('click', async function () {
                 textureID
             )
             $('.selectSkin__Wrap').children('.skinLibraryItem').remove()
-            await skinFunc.mergeNumaSkinJSON()
+            await skinFunc.mergeKomeSkinJSON()
             await skinFunc.exportLibrary()
             $('#addNewSkinContent').fadeOut()
         },
@@ -87,7 +87,7 @@ $('.addSaveAndUse').on('click', async function () {
             textureID
         )
         $('.selectSkin__Wrap').children('.skinLibraryItem').remove()
-        await skinFunc.mergeNumaSkinJSON()
+        await skinFunc.mergeKomeSkinJSON()
         await skinFunc.exportLibrary()
         $('#addNewSkinContent').fadeOut()
     }
@@ -122,7 +122,7 @@ $('.addSave').on('click', async function () {
                 null
             )
             $('.selectSkin__Wrap').children('.skinLibraryItem').remove()
-            await skinFunc.mergeNumaSkinJSON()
+            await skinFunc.mergeKomeSkinJSON()
             await skinFunc.exportLibrary()
             $('#addNewSkinContent').fadeOut()
         },
@@ -141,7 +141,7 @@ $('.addSave').on('click', async function () {
         skinFunc.addSkinJSON(created, name, skinImage, modelImage, slim, null)
 
         $('.selectSkin__Wrap').children('.skinLibraryItem').remove()
-        await skinFunc.mergeNumaSkinJSON()
+        await skinFunc.mergeKomeSkinJSON()
         await skinFunc.exportLibrary()
         $('#addNewSkinContent').fadeOut()
     }
@@ -254,7 +254,7 @@ $('input.editSaveAndUse').on('click', async function () {
                 textureID
             )
             $('.selectSkin__Wrap').children('.skinLibraryItem').remove()
-            await skinFunc.mergeNumaSkinJSON()
+            await skinFunc.mergeKomeSkinJSON()
             await skinFunc.exportLibrary()
             $('#editSkinContent').fadeOut()
             $('.changeSkin__overlay').fadeOut()
@@ -272,7 +272,7 @@ $('input.editSaveAndUse').on('click', async function () {
         const textureID = await skinFunc.getTextureID()
         skinFunc.editSkinJSON(key, name, null, null, slim, updated, textureID)
         $('.selectSkin__Wrap').children('.skinLibraryItem').remove()
-        await skinFunc.mergeNumaSkinJSON()
+        await skinFunc.mergeKomeSkinJSON()
         await skinFunc.exportLibrary()
         $('#editSkinContent').fadeOut()
         $('.changeSkin__overlay').fadeOut()
@@ -310,7 +310,7 @@ $('input.editSave').on('click', async function () {
                 null
             )
             $('.selectSkin__Wrap').children('.skinLibraryItem').remove()
-            await skinFunc.mergeNumaSkinJSON()
+            await skinFunc.mergeKomeSkinJSON()
             await skinFunc.exportLibrary()
             $('#editSkinContent').fadeOut()
             skinFunc.initEditSkinPreview()
@@ -322,7 +322,7 @@ $('input.editSave').on('click', async function () {
     } else {
         skinFunc.editSkinJSON(key, name, null, null, slim, updated, null)
         $('.selectSkin__Wrap').children('.skinLibraryItem').remove()
-        await skinFunc.mergeNumaSkinJSON()
+        await skinFunc.mergeKomeSkinJSON()
         await skinFunc.exportLibrary()
         $('#editSkinContent').fadeOut()
         skinFunc.initEditSkinPreview()
@@ -445,7 +445,7 @@ $('.selectSkin__Wrap').on('click', '.copySkinBox', async function () {
     const updated = now.toISOString()
     skinFunc.copySkinJSON(key, updated)
     $('.selectSkin__Wrap').children('.skinLibraryItem').remove()
-    await skinFunc.mergeNumaSkinJSON()
+    await skinFunc.mergeKomeSkinJSON()
     await skinFunc.exportLibrary()
 })
 
@@ -477,7 +477,7 @@ $('.openSettingSkinEditor').on('click', function () {
 // 初回起動時に公式ランチャーからスキン情報をインポートする
 $('.importSkin').on('click', async function () {
     skinFunc.importOriginalSkinJSON()
-    await skinFunc.mergeNumaSkinJSON()
+    await skinFunc.mergeKomeSkinJSON()
     await skinFunc.exportLibrary()
 })
 
@@ -486,7 +486,7 @@ $('.importMyOriginSkin').on('click', async function () {
     const originPath = $('input#resultMyOriginSkinPath').val()
     skinFunc.saveMyOriginSkinPath(originPath)
     skinFunc.importMySettingOriginalSkinJSON()
-    await skinFunc.mergeNumaSkinJSON()
+    await skinFunc.mergeKomeSkinJSON()
     await skinFunc.exportLibrary()
 })
 
@@ -496,7 +496,7 @@ $('.saveSettingSkin').on('click', async function () {
     const sync = checkSyncValue == 'true'
     skinFunc.saveSkinSetting(sync)
     if (sync) {
-        await skinFunc.mergeNumaSkinJSON()
+        await skinFunc.mergeKomeSkinJSON()
         await skinFunc.exportLibrary()
     }
 })

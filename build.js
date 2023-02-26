@@ -4,10 +4,10 @@ const Platform = builder.Platform
 builder.build({
     targets: (process.argv[2] != null && Platform[process.argv[2]] != null ? Platform[process.argv[2]] : getCurrentPlatform()).createTarget(),
     config: {
-        appId: 'numalauncher',
-        productName: 'NumaLauncher',
+        appId: 'komemodlauncher',
+        productName: 'KomeModLauncher',
         artifactName: '${productName}-setup-${version}.${ext}',
-        copyright: 'Copyright © 2018-2020 Daniel Scalzi, 2020 TeamKUN',
+        copyright: 'Copyright © 2018-2020 Daniel Scalzi, 2020 TeamKUN, 2023 Kome-Lab',
         directories: {
             buildResources: 'build',
             output: 'dist'
@@ -30,15 +30,15 @@ builder.build({
         },
         linux: {
             target: 'AppImage',
-            maintainer: 'Daniel Scalzi, TeamKUN',
-            vendor: 'Daniel Scalzi, TeamKUN',
-            synopsis: '沼でも使えるMinecraftランチャー',
-            description: '参加型に参加するためのすべてがここに。Mod、コンフィグ、アップデートが全自動で揃います。',
+            maintainer: 'Daniel Scalzi, TeamKUN, Kome-Lab',
+            vendor: 'Daniel Scalzi, TeamKUN, Kome-Lab',
+            synopsis: 'ModMinecraftランチャー',
+            description: '簡単にModを導入できるMinecraftランチャー。',
             category: 'Game'
         },
         compression: 'maximum',
         files: [
-            '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.travis.yml,.nvmrc,.eslintrc.json,build.js,numa_skins.json,skinSetting.json,jdk}'
+            '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.travis.yml,.nvmrc,.eslintrc.json,build.js,kome_skins.json,skinSetting.json,jdk}'
         ],
         extraResources: [
             'libraries',
