@@ -4,8 +4,6 @@
 
 <em><h5 align="center">(formerly Electron Launcher)</h5></em>
 
-[<p align="center"><img src="https://img.shields.io/github/downloads/dscalzi/HeliosLauncher/total.svg?style=for-the-badge" alt="downloads">](https://github.com/Kome-Lab/KomeModLauncher/releases)</p>
-
 | Platform | File |
 | -------- | ---- |
 | Windows x64 | `KomeModLauncher-setup-VERSION.exe` |
